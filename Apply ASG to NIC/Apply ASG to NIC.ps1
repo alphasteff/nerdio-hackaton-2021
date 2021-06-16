@@ -7,6 +7,12 @@ In order for this runbook to work, the ApplicationSecurityGroups custom tag must
 Requires:
 - Application Security Groups
 - A Tag with a part, or the whole name of one or many Application Security Groups
+
+Author:
+Stefan Beckmann
+stefan@beckmann.ch
+@alphasteff
+https://github.com/alphasteff
 #>
 
 # Set Error action

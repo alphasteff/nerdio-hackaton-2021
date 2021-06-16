@@ -13,8 +13,8 @@ Freestyle
 4. If Set Challenge, please specify Set Challenge\
 No challenge
 
-5. Submission method\
-That is probably not necessary here ;-)
+5. Submission\
+https://github.com/alphasteff/nerdio-hackaton-2021/blob/main/Apply%20ASG%20to%20NIC/Apply%20ASG%20to%20NIC.ps1
 
 6. Any additional information required\
 The script can be used as a Runbook or Script. I have also tested the code with Cloud Shell. The following is required:

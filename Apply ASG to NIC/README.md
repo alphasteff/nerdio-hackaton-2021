@@ -17,7 +17,7 @@ No challenge
 That is probably not necessary here ;-)
 
 6. Any additional information required\
-The script can be used as a Runbook or Script. I have also tested the code with Cloud Shell. The following is required:\
+The script can be used as a Runbook or Script. I have also tested the code with Cloud Shell. The following is required:
 - Azure VM
 - Application Security Groups (for testing more than one)
 - On the Azure VM a tag with part of the names of the Application Security Groups, separated by a comma): ApplicationSecurityGroups (the name of the tag can be customized)

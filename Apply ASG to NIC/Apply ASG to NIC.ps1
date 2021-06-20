@@ -15,53 +15,60 @@ stefan@beckmann.ch
 https://github.com/alphasteff
 #>
 
+# Defines the name of the tag
+$tagName = 'ApplicationSecurityGroups'
+
 # Set Error action
-$ErrorActionPreference = "Stop"
+$errorActionPreference = "Stop"
 
 # Ensure context is using correct subscription
-Set-AzContext -SubscriptionId $AzureSubscriptionId
-
-# Defines the name of the tag
-$TagName = 'ApplicationSecurityGroups'
+$null = Set-AzContext -SubscriptionId $AzureSubscriptionId
 
 # Get the VM and reads out the tag
-$AzVM = Get-AzVM -Name $AzureVMName -ResourceGroupName $AzureResourceGroupName
-$ApplicationSecurityGroups = $AzVM.Tags.$TagName
+$azVM = Get-AzVM -Name $AzureVMName -ResourceGroupName $AzureResourceGroupName
+$tagValue = $azVM.Tags.$tagName
 
 # Create an array with the names of the Application Security Groups
-If (($null -ne $ApplicationSecurityGroups) -and ($ApplicationSecurityGroups -ne '')){
-  [array]$AsgNames = $ApplicationSecurityGroups.Split(',').Trim()
-  $AsgNames = $AsgNames | Where-Object {$_}
+If (($null -ne $tagValue) -and ($tagValue -ne '')){
+  [array]$asgNames = $tagValue.Split(',').Trim()
+  $asgNames = $asgNames | Where-Object {$_}
 } Else {
-  [array]$AsgNames = @()
+  [array]$asgNames = @()
 }
 
 # Loop through the defined Application Security Groups names
-foreach ($AsgAdd in $AsgNames) {
+foreach ($asgAdd in $asgNames) {
   # Get the Network Interface
-  $NetworkInterface = Get-AzNetworkInterface -ResourceId $AzVM.NetworkProfile.NetworkInterfaces[0].Id
-  Write-Verbose -Message ('NetworkInterface: ' + ($NetworkInterface | Out-String))
+  $networkInterface = Get-AzNetworkInterface -ResourceId $azVM.NetworkProfile.NetworkInterfaces[0].Id
+  Write-Verbose -Message ('NetworkInterface: ' + ($networkInterface | Out-String))
 
   # Get the Application Security Group
-  $Asg = Get-AzApplicationSecurityGroup | Where-Object {$_.Name.ToLower() -like ("*$AsgAdd*").ToLower()}
-  Write-Verbose -Message ('Asg: ' + ($Asg | Out-String))
+  $asg = Get-AzApplicationSecurityGroup | Where-Object {$_.Name.ToLower() -like ("*$asgAdd*").ToLower()}
+  Write-Verbose -Message ('Asg: ' + ($asg | Out-String))
 
   # If the Application Security Group is found and the name also contains the part from the tag, the script will continue to run
-  if ($Asg.Name -match $AsgAdd) {
-    Write-Verbose -Message ('AddNicToAsg: ' + ($Asg.Name))
+  if ($asg.Name -match $asgAdd) {
+    Write-Verbose -Message ('AddNicToAsg: ' + ($asg.Name))
 
     # Check whether application security groups have already been assigned and add the new application security group or add to the existing ones
-    If ($NetworkInterface.IpConfigurations[0].$TagName.Count -gt 0){
-      $NetworkInterface.IpConfigurations[0].$TagName += $Asg
-    } Else {
-      $NetworkInterface.IpConfigurations[0].$TagName = $Asg
+    $applicationSecurityGroups = $networkInterface.IpConfigurations[0].'ApplicationSecurityGroups'
+    If ($applicationSecurityGroups.id -contains $Asg.Id)
+    {
+      Write-Verbose -Message ('Appllication Security Group ' + $asg.Name + ' exists on NIC ' + $networkInterface.Name)
     }
-
-    # Write the new list of Application Security Groups to the Network Interface
-    $Result = $NetworkInterface | Set-AzNetworkInterface
-    Write-Verbose -Message ('NicToAsgAdded: ' + ($Result | Out-String))
-    Write-Output ('Appllication Security Group ' + $Asg.Name + ' added to NIC ' + $NetworkInterface.Name)
+    Else
+    {
+      If ($applicationSecurityGroups.Count -gt 0){
+        $networkInterface.IpConfigurations[0].'ApplicationSecurityGroups' += $asg
+      } Else {
+        $networkInterface.IpConfigurations[0].'ApplicationSecurityGroups' = $asg
+      }
+      # Write the new list of Application Security Groups to the Network Interface
+      $result = $networkInterface | Set-AzNetworkInterface
+      Write-Verbose -Message ('NicToAsgAdded: ' + ($result | Out-String))
+      Write-Output ('Appllication Security Group ' + $asg.Name + ' added to NIC ' + $networkInterface.Name)
+    }
   } else {
-    Write-Warning -Message ('AsgDoesNotExist: ' + ($AsgAdd))
+    Write-Warning -Message ('AsgDoesNotExist: ' + ($asgAdd))
   }
 }

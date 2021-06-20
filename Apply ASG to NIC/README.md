@@ -19,7 +19,7 @@ https://github.com/alphasteff/nerdio-hackaton-2021/blob/main/Apply%20ASG%20to%20
 6. Additional information\
 The script can be used as a Runbook or Script. I have also tested the code with Cloud Shell. The following is required:
 - Azure VM
-- Application Security Groups (for testing more than one)
+- Application Security Groups (for testing a minimum of 2 are recommended)
 - On the Azure VM a tag with part of the names of the Application Security Groups, separated by a comma): ApplicationSecurityGroups (the name of the tag can be customized)
 
 7. Evidence of script running successfully\

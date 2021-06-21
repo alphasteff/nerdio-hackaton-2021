@@ -2,12 +2,12 @@
 # tags: Preview
 <#
 Notes:
-This script is used to configure the Regional Settings specified in the Tag.
+This script is used to configure the Regional Settings specified in the Tag. Keyboar layouts, Geo Id, MUI and User Locale are configured.
 If the tag should not be called RegionalSettings, then you must change this in the variable.
 The parameters to be defined are stored within the tag in JSON format.
 
 Requires:
-- Wenn MUI konfiguriert werden soll, muss MUI installiert sein.
+- Install needed language packs first
 - A Tag with the regional settings, formated in JSON. Example:
 {
 "nation" : "223",
@@ -31,7 +31,7 @@ $tagName = 'RegionalSettings'
 $errorActionPreference = "Stop"
 
 # Ensure context is using correct subscription
-$null = Set-AzContext -SubscriptionId $AzureSubscriptionId
+$azureContext = Set-AzContext -SubscriptionId $AzureSubscriptionId -ErrorAction Stop
 
 # Get the VM and reads out the tag
 $azVM = Get-AzVM -Name $AzureVMName -ResourceGroupName $AzureResourceGroupName

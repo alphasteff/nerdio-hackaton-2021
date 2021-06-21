@@ -2,7 +2,10 @@
 # tags: Preview
 <#
 Notes:
-In order for this runbook to work, the ApplicationSecurityGroups custom tag must be filled with a comma-separated list with the names or parts of the names of the Application Security Groups (must be unique).
+This script assigns one or more Application Security Groups to a VM. It searches for the application security group of a segment or the whole name defined in a tag.
+In order for this script to work, the ApplicationSecurityGroups custom tag must be filled with a comma-separated list with the names or parts of the names of the Application Security Groups (must be unique).
+If the tag should not be called ApplicationSecurityGroups, then you must change this in the variable.
+The whole system is subject to all the constraints and requirements that Application Security Groups bring with them. For example, only Application Security Groups from the same region can be assigned in the same subscription.
 
 Requires:
 - Application Security Groups
@@ -22,7 +25,7 @@ $tagName = 'ApplicationSecurityGroups'
 $errorActionPreference = "Stop"
 
 # Ensure context is using correct subscription
-$null = Set-AzContext -SubscriptionId $AzureSubscriptionId
+$azureContext = Set-AzContext -SubscriptionId $AzureSubscriptionId -ErrorAction Stop
 
 # Get the VM and reads out the tag
 $azVM = Get-AzVM -Name $AzureVMName -ResourceGroupName $AzureResourceGroupName

@@ -154,7 +154,7 @@ $scriptBlock ={
 
     # Write-PSFMessage -Level Host -Message 'Configure Regional Settings'
     $null = control.exe "intl.cpl,,/f:`"$xmlFile`""
-    $null = Start-Sleep -s 5
+    $null = Start-Sleep -Seconds 5
     $null = Remove-Item -Path "$xmlFile" -Force
 
     # Create array with all keyboard ids

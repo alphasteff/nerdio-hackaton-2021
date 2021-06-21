@@ -16,7 +16,7 @@ Set Challenge
 5. Submission\
 https://github.com/alphasteff/nerdio-hackaton-2021/blob/main/Regional%20Settings/Set-RegionalSettings.ps1
 
-6. Detailed description
+6. Detailed description\
 This script is used to configure the Regional Settings specified in the Tag. Keyboar layouts, Geo Id, MUI and User Locale are configured.
 If the tag should not be called RegionalSettings, then you must change this in the variable.
 The parameters to be defined are stored within the tag in JSON format.

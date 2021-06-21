@@ -17,7 +17,9 @@ Set Challenge
 https://github.com/alphasteff/nerdio-hackaton-2021/blob/main/Regional%20Settings/Set-RegionalSettings.ps1
 
 6. Additional information\
-- Install needed language packs:  https://docs.microsoft.com/en-us/azure/virtual-desktop/language-packs
+- A VM with Windows 10 Enterprise or Multi Session
+- Install then needed language packs:  https://docs.microsoft.com/en-us/azure/virtual-desktop/language-packs
+- In addition to an administrator account, another user who does not yet have a profile, and can then test the settings, should be created.
 
 7. Evidence of script running successfully\
 You can find a short video in the same directory.

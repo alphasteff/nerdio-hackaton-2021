@@ -16,11 +16,17 @@ Set Challenge
 5. Submission\
 https://github.com/alphasteff/nerdio-hackaton-2021/blob/main/Regional%20Settings/Set-RegionalSettings.ps1
 
-6. Additional information\
+6. Detailed description
+This script is used to configure the Regional Settings specified in the Tag. Keyboar layouts, Geo Id, MUI and User Locale are configured.
+If the tag should not be called RegionalSettings, then you must change this in the variable.
+The parameters to be defined are stored within the tag in JSON format.
+
+7. Additional information\
+The script can be used as a Runbook or Script. I have also tested the code with Cloud Shell. The following is required:
 - A VM with Windows 10 Enterprise or Multi Session
 - Install then needed language packs:  https://docs.microsoft.com/en-us/azure/virtual-desktop/language-packs
 - In addition to an administrator account, another user who does not yet have a profile, and can then test the settings, should be created.
 
-7. Evidence of script running successfully\
+8. Evidence of script running successfully\
 You can find a short video in the same directory.
 https://github.com/alphasteff/nerdio-hackaton-2021/blob/main/Apply%20ASG%20to%20NIC/Apply%20ASG%20to%20NIC.mp4

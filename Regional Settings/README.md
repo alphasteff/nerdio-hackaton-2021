@@ -17,9 +17,10 @@ Set Challenge
 https://github.com/alphasteff/nerdio-hackaton-2021/blob/main/Regional%20Settings/Set-RegionalSettings.ps1
 
 6. Detailed description\
-This script is used to configure the Regional Settings specified in the Tag. Keyboar layouts, Geo Id, MUI and User Locale are configured.
-If the tag should not be called RegionalSettings, then you must change this in the variable.
-The parameters to be defined are stored within the tag in JSON format.
+This script is used to configure the Regional Settings specified in the Tag. Keyboar layouts, Geo Id, MUI and User Locale are configured.\
+If the tag should not be called RegionalSettings, then you must change this in the variable.\
+The parameters to be defined are stored within the tag in JSON format.\
+If you want to use this script in Nerdio, comment or remove the param section!
 
 7. Additional information\
 The script can be used as a Runbook or Script. I have also tested the code with Cloud Shell. The following is required:

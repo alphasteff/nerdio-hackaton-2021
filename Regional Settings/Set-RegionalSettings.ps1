@@ -5,9 +5,10 @@ Notes:
 This script is used to configure the Regional Settings specified in the Tag. Keyboar layouts, Geo Id, MUI and User Locale are configured.
 If the tag should not be called RegionalSettings, then you must change this in the variable.
 The parameters to be defined are stored within the tag in JSON format.
+If you want to use this script in Nerdio, comment or remove the param section!
 
 Requires:
-- Install needed language packs first
+- Install the needed language packs first
 - A Tag with the regional settings, formated in JSON. Example:
 {
 "nation" : "223",
@@ -16,6 +17,8 @@ Requires:
 "locale" : "de-ch",
 "keyboardLayout" : "0807:00000807,100C:0000100C"
 }
+Nations:          https://docs.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
+Keyboard Layouts: https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs
 
 Author:
 Stefan Beckmann
@@ -23,6 +26,19 @@ stefan@beckmann.ch
 @alphasteff
 https://github.com/alphasteff
 #>
+
+# If you want to use this script in Nerdio, comment or remove the param section!
+param
+(
+  [Parameter(mandatory = $false)]
+  [string] $AzureSubscriptionId,
+
+  [Parameter(mandatory = $false)]
+  [string] $AzureResourceGroupName,
+
+  [Parameter(mandatory = $false)]
+  [string] $AzureVMName
+)
 
 # Defines the name of the tag
 $tagName = 'RegionalSettings'

@@ -2,10 +2,11 @@
 # tags: Preview
 <#
 Notes:
-This script assigns one or more Application Security Groups to a VM. It searches for the application security group of a segment or the whole name defined in a tag.
+This script assigns one or more Application Security Groups to a VM. It chooses to match Application Security Group by the full or unique parts of names within a comma-separated list.
 In order for this script to work, the ApplicationSecurityGroups custom tag must be filled with a comma-separated list with the names or parts of the names of the Application Security Groups (must be unique).
 If the tag should not be called ApplicationSecurityGroups, then you must change this in the variable.
 The whole system is subject to all the constraints and requirements that Application Security Groups bring with them. For example, only Application Security Groups from the same region can be assigned in the same subscription.
+If you want to use this script in Nerdio, comment or remove the param section!
 
 Requires:
 - Application Security Groups
@@ -17,6 +18,19 @@ stefan@beckmann.ch
 @alphasteff
 https://github.com/alphasteff
 #>
+
+# If you want to use this script in Nerdio, comment or remove the param section!
+param
+(
+  [Parameter(mandatory = $false)]
+  [string] $AzureSubscriptionId,
+
+  [Parameter(mandatory = $false)]
+  [string] $AzureResourceGroupName,
+
+  [Parameter(mandatory = $false)]
+  [string] $AzureVMName
+)
 
 # Defines the name of the tag
 $tagName = 'ApplicationSecurityGroups'

@@ -11,7 +11,7 @@ Advanced
 Set Challenge
 
 4. If Set Challenge, please specify Set Challenge\
-1. "Configure regional settings and language on session hosts, with different language per host pool, but using the same image"
+Nr 1: "Configure regional settings and language on session hosts, with different language per host pool, but using the same image"
 
 5. Submission\
 https://github.com/alphasteff/nerdio-hackaton-2021/blob/main/Regional%20Settings/Set-RegionalSettings.ps1

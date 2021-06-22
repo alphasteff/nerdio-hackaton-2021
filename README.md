@@ -3,4 +3,4 @@ In this repository you can find my submitted Scripted Actions during the Nerdio 
 
 The scripts are as they are, there is no support!
 
-https://getnerdio.com/nerdio-hackathon/
+<a href="https://getnerdio.com/nerdio-hackathon/" target="_blank">https://getnerdio.com/nerdio-hackathon/</a>
